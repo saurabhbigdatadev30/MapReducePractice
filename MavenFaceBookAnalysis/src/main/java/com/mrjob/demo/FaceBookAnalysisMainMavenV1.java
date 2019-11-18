@@ -20,14 +20,14 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class FaceBookAnalysisMainMavenV1 {
-public static void main(String[] args) {
+ public static void main(String[] args) {
 	System.out.println("************ INSIDE MAIN METHOD OF FaceBookAnalysisMain **********************");
 	  if(args.length !=2){
           System.err.println("Invalid Command");
           System.err.println("Usage: WordCount <input path> <output path>");
           System.exit(0);
 	  }
-	Configuration conf = new Configuration();
+	  Configuration conf = new Configuration();
 	  System.out.println("************ INSIDE conf**********************");
       System.out.println("conf>>>>>>>"+ conf);
       Job job;
