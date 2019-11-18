@@ -25,7 +25,7 @@ public class FaceBookAnalysisMainMavenV1 {
 	  if(args.length !=2){
           System.err.println("Invalid Command");
           System.err.println("Usage: WordCount <input path> <output path>");
-          System.exit(0);
+           System.exit(0);
 	  }
 	  Configuration conf = new Configuration();
 	  System.out.println("************ INSIDE conf**********************");
