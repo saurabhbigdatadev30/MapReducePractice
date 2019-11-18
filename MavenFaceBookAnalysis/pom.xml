@@ -13,6 +13,7 @@
 
   <groupId>com.mrjob.demo</groupId>
   <artifactId>MavenFaceBookAnalysis</artifactId>
+  
   <version>0.0.1-SNAPSHOT</version>
 
   <name>MavenFaceBookAnalysis</name>
