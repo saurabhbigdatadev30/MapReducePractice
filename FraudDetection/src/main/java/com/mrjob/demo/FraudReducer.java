@@ -11,8 +11,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 
 /*
- * Reducer input Key :-BGHY284294HR
-Reducer input Key :-BGHY284294HR
+ * for  Reducer input Key :-BGHY284294HR, 
+Iterable<FraudWritable> values - contains array of FraudWritable object as below .
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=09-01-2017, returned=true, returnDate=17-01-2017]
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=09-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=14-01-2017, returned=false, returnDate=null]
@@ -21,8 +21,9 @@ Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=08-01
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=06-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=06-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=14-01-2017, returned=true, returnDate=14-01-2017]
-Customer ID	BGHY284294HRCustomer Name	JosephineFraud Point is	11
-Reducer input Key :-BHEE999914ED
+----------------------------------------------------------------------------------------------------------------------------
+for  Reducer input Key :-BHEE999914ED, 
+Iterable<FraudWritable> values - contains array of FraudWritable object as below .
 Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=13-01-2017, returned=true, returnDate=05-02-2017]
 Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=13-01-2017, returned=true, returnDate=14-01-2017]
 Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=08-01-2017, returned=false, returnDate=null]
@@ -31,8 +32,9 @@ Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=26-01-2017,
 Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=06-01-2017, returned=true, returnDate=10-01-2017]
 Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=14-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Ana, receiveDate=10-01-2017, returned=true, returnDate=17-01-2017]
-Customer ID	BHEE999914EDCustomer Name	AnaFraud Point is	12
-Reducer input Key :-BPLA457837LB
+----------------------------------------------------------------------------------
+for  Reducer input Key :--BPLA457837LB
+Iterable<FraudWritable> values - contains array of FraudWritable object as below 
 Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=09-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=06-01-2017, returned=true, returnDate=09-01-2017]
 Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=13-01-2017, returned=true, returnDate=22-01-2017]
@@ -41,8 +43,10 @@ Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=08-01-2017
 Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=08-01-2017, returned=true, returnDate=18-01-2017]
 Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=06-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Alex, receiveDate=13-01-2017, returned=false, returnDate=null]
-Customer ID	BPLA457837LBCustomer Name	AlexFraud Point is	0
+----------------------------------------------------------------------------------------------------------
+for  Reducer input Key :--
 Reducer input Key :-CCWO777171WT
+Iterable<FraudWritable> values - contains array of FraudWritable object as below
 Reducer input value is 	FraudWritable [customerName=Arthur, receiveDate=16-01-2017, returned=false, returnDate=null]
 Reducer input value is 	FraudWritable [customerName=Arthur, receiveDate=31-01-2017, returned=true, returnDate=01-02-2017]
 Reducer input value is 	FraudWritable [customerName=Arthur, receiveDate=15-01-2017, returned=true, returnDate=16-01-2017]
@@ -122,12 +126,16 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 	Iterator<FraudWritable> valuesIter = values.iterator();
 	while (valuesIter.hasNext())
 	{
-	    ordersCount++;                      
-	    data = valuesIter.next();    
+	    // incrementing orderplaced
+		ordersCount++;   
+	    // assigning line1 to FraudWritable object
+		
+	    data = valuesIter.next();  ////String customerName, String receiveDate, String returned, String returnDate  
 	    System.out.println("Reducer input value is "+ "\t" + ""+ data.toString());
 	    //customerName=Josephine, receiveDate=09-01-2017, returned=true, returnDate=17-01-2017
 	    if (data.getReturned())
 	    {
+	    	 // incrementing return count
 		returnsCount++;                            
 		try
 		{
@@ -173,11 +181,12 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 	Collections.sort(customers, new Comparator<String>()
 			{
 		//Sort on decending order of Fraud count
-		//S1 = CCWO777171WT,Arthur,12
-		public int compare(String s1, String s2)
+		//customer1 = {BHEE999914ED,Ana,12}
+		//customer2 = {CCWO777171WT,Arthur,12}
+		public int compare(String customer1, String customer2)
 		{
-		    int fp1 = Integer.parseInt(s1.split(",")[2]);
-		    int fp2 = Integer.parseInt(s2.split(",")[2]);
+		    int fp1 = Integer.parseInt(customer1.split(",")[2]);
+		    int fp2 = Integer.parseInt(customer2.split(",")[2]);
 		    
 		    return -(fp1-fp2);     /*For desscending order*/
 		}});

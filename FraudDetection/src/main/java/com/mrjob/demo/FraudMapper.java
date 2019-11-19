@@ -22,8 +22,13 @@ public class FraudMapper extends Mapper<LongWritable, Text, Text, FraudWritable>
 	// set the input tokens from fle  to the custom writable
 	// ** every time new dataObj is created automatically ????
 	data.set(words[1], words[5], words[6], words[7]);
+	// set String customerName, String receiveDate, String returned, String returnDate
 	System.out.println("Mapper output is "+ "\t" + "" +"["+words[0]+ "\t" + "]" + ""+ "["+ data.toString()+ "]");
 	c.write(custId, data);
+//  returns key - customerID , value as FraudWritable object .. 
+//	[BPLA457837LB][FraudWritable [customerName=Alex, receiveDate=09-01-2017, returned=false, returnDate=null]]
+	
+	
 }
 }
 
