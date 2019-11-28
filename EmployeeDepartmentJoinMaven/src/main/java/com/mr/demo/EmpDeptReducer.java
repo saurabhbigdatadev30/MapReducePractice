@@ -99,8 +99,8 @@ public class EmpDeptReducer extends Reducer<Text, Text, Text, Text> {
 		
 		System.out.println("Department data is " + "\t" + Department);
 		
-		if (!Employee_List.isEmpty() && !Department.isEmpty()) // Condition for
-																// Inner join
+		if (!Employee_List.isEmpty() && !Department.isEmpty()) // Condition for Inner join i.e both contains common 
+																// 
 		{
 			for (String Empdata : Employee_List) {
 				context.write(DeptNumber, new Text(Empdata + " " + Department)); // output
