@@ -32,12 +32,12 @@ public class FaceBookReducer extends Reducer<Text, Text, Text, Text>{
 	    {
 
 	    // key: city value:total_success_rate, count
-		HashMap<String, String> cityData = new HashMap<String, String>();   //       [{Mumbai:65.07,3 } {Delhi:69.65,7} {Bangalore:9.78,3} ...... ]
+		HashMap<String, String> cityData = new HashMap<String, String>();   //  [{Mumbai:65.07,3 } {Delhi:69.65,7} {Bangalore:9.78,3} ...... ]
 		System.out.println("reduce input Key data" + ":-" +"" +""  +key );
 		Iterator<Text> itr = values.iterator();
 		/* all data for each category */
-		while (itr.hasNext())
-			// Mumbai,39,13   position 1 is already inserted , we are now inserting row 2 => Mumbai,281,5,	
+		while (itr.hasNext())  //first iteration ..(  Mumbai,39,13 )  is complete
+	   //  and after iteration 1 , map contains = ([mumbai] 33.33,1) we are now iterating  row 2 => Mumbai,281,5,	
 		{
 		    String f = itr.next().toString();       // f =  Mumbai,281,5
 		    System.out.println("reduce input value data" + ":-" +""  +f );
