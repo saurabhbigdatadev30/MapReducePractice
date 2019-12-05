@@ -1,0 +1,3 @@
+sudo -u hdfs  hadoop jar MapreducerChaining.jar /user/cloudera/word-count.txt  /output_ChainMapper
+
+[cloudera@quickstart ~]$ chmod 777 /home/cloudera/MapreducerChaining.jar 
