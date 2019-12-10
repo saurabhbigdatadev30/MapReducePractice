@@ -1,3 +1,24 @@
 sudo -u hdfs  hadoop jar MapreducerChaining.jar /user/cloudera/word-count.txt  /output_ChainMapper
 
 [cloudera@quickstart ~]$ chmod 777 /home/cloudera/MapreducerChaining.jar 
+
+Log of mapper
+key for Job2 in ReducerNextJob -f
+values  for ReducerNextJob is >>>> -	7For key -	f
+key for Job2 in ReducerNextJob -j
+values  for ReducerNextJob is >>>> -	8For key -	j
+key for Job2 in ReducerNextJob -k
+values  for ReducerNextJob is >>>> -	4For key -	k
+key for Job2 in ReducerNextJob -l
+values  for ReducerNextJob is >>>> -	4For key -	l
+key for Job2 in ReducerNextJob -s
+values  for ReducerNextJob is >>>> -	6For key -	s
+
+
+[cloudera@quickstart ~]$ hdfs dfs -cat /output_ChainMapper/part-r-00000
+f	7
+j	8
+k	4
+l	4
+s	6
+

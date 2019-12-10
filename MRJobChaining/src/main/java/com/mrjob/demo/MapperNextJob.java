@@ -28,27 +28,27 @@ key =36 Value  =smith	1
 key =44 Value  =steve	5 
 	
 
-mappper 1- 
+For mappper 1 - input
 key =0 (byte offset)
 Value  = frank	7
 
-mappper 2 - 
+For mappper 2 - input 
 key =8 (byte offset)
 Value =john	8
 
-mappper 3 - 
+mappper 3 - input
 key =15 (byte offset)
 Value  =kuoa	4
 
-mappper 4 - 
+mappper 4 - input
 key =22
 Value  =lexa	1
 
-mappper 5 - 
+mappper 5 - input
 key =29
 Value  =lupa	3
 
-mappper 6 - 
+mappper 6 - input
 key =36
 Value  =smith	1
 
@@ -69,10 +69,12 @@ Value =steve	5
      System.out.println("key for Job2" +"-" + key);
      System.out.println("Value for job 2"+ " "+  value);
 	String[] words = value.toString().split("\\s+"); // splitting on basis of space 
-	// for map1() - words[0]= frank & words[1]= john
+	// for map1() - words[0]= frank & words[1]= 7
 	String firstCharacter = words[0].substring(0, 1);
 	c.write(new Text(firstCharacter), new IntWritable(Integer.parseInt(words[1])));
-	           //    f                   7
+	           //    f  7
+	           //    j  8
+	           //    k  4
 	
     }
 }

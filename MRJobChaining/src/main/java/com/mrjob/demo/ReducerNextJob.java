@@ -13,11 +13,11 @@ public class ReducerNextJob extends Reducer<Text, IntWritable, Text, IntWritable
 	int characterCount = 0;
 	for (IntWritable count : values)
 	{ 
-		System.out.println("values  for ReducerNextJob is " +"-" +count.get());
+		
 	    characterCount += count.get();
 	}
 	/* emit total count for words starting with character */
-	System.out.println("values  for ReducerNextJob is >>>> " +"-" +"\t" +characterCount);
+	System.out.println("values  for ReducerNextJob is >>>> " +"-" +"\t" +characterCount + "For key -" + "\t" + key);
 	c.write(key, new IntWritable(characterCount));
     }
 }

@@ -14,14 +14,18 @@ public class FirstReducer extends Reducer<Text, IntWritable, Text, IntWritable>
         lupa,john,steve,kuoa,lexa
         kuoa,steve,smith
 	 * 
-	 * 
+	 * Output of Mapper ------------->
+	 * John ,1
+	   lupa ,1
+	   john ,1
+	   frank,1
+	   frank,1
 	 * 
 	 *    
-	 * Input file to reducer  =>key - lowercase words , value = array =>
-	 * (lowercaseword1 = john , [1,1,1,1....])
-	 * (lowercaseword2 = lupa , [1,1,1,1....])
-	 * (lowercaseword3 , [1,1,1,1....])
-	 * (lowercaseword4 , [1,1,1,1....])
+	 * Output of Shuffle sort / Input file to reducer  --------->    key - lowercase words , value = array =>
+	 * (john , [1,1,1,1....])
+	 * (lupa , [1,1,1,1....])
+	 *  (frank, [1,1,1,1....])
 	 */
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context c)throws IOException, java.lang.InterruptedException
