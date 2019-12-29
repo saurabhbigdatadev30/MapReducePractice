@@ -31,8 +31,8 @@ public class WordCountDriver
 			job.setJarByClass(WordCountDriver.class);
 			job.setMapperClass(WordCountMapper.class);
 			job.setReducerClass(WordCountReducer.class);
-			job.setMapOutputKeyClass(Text.class);
-			job.setMapOutputValueClass(IntWritable.class);
+			job.setMapOutputKeyClass(Text.class);    // mapper output (key)
+			job.setMapOutputValueClass(IntWritable.class); // mapper output (Value)
 			job.setOutputKeyClass(Text.class);
 		    job.setOutputValueClass(IntWritable.class);
 			 FileInputFormat.addInputPath(job, inputPath);
@@ -47,3 +47,32 @@ public class WordCountDriver
 
     }
 }
+/*
+Input file data :--------------
+xxx often bad yyy ddd ccc acd often so bbb that we ccc xxx xxx xxx aaa perform index construction efficiently on a single machine aaa xxx aaa aaa aaa acd bad
+
+Output 
+a	1
+aaa	5
+acd	2
+bad	2
+bbb	1
+ccc	2
+construction	1
+ddd	1
+efficiently	1
+index	1
+machine	1
+often	2
+on	1
+perform	1
+single	1
+so	1
+that	1
+we	1
+xxx	5
+yyy	1
+
+
+ * 
+*/

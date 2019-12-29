@@ -18,7 +18,7 @@ public class WordCountMapper extends Mapper<LongWritable,Text,Text,IntWritable> 
     }
 }
 }
-/* Output of Mapper                
+/* Output of Mapper ------------------------             
  * 
  * (Word1,1)
    (Word2,1)
