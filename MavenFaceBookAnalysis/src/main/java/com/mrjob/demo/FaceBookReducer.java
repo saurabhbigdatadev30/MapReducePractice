@@ -70,8 +70,8 @@ public class FaceBookReducer extends Reducer<Text, Text, Text, Text>{
 		System.out.println(cityData.toString());
 		for (Map.Entry<String, String> e : cityData.entrySet())        //Map.Entry e ==> Key-  Mumbai;  value= 65.07,3
 		{
-		    String[] V1 = e.getValue().split(",");        // V1  [{65.07} {3}]
-		    Double avgSccRate = Double.parseDouble(V1[0])/Integer.parseInt(V1[1]);
+		    String[] tokens = e.getValue().split(",");        // V1  [{65.07} {3}]
+		    Double avgSccRate = Double.parseDouble(tokens[0])/Integer.parseInt(tokens[1]);
 		    c.write(key, new Text(e.getKey() + "," + avgSccRate));
 		}
 	    }
