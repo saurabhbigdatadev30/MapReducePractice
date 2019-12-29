@@ -4,8 +4,9 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.io.Text;
 import java.io.IOException;
 public class WordCountReducer extends Reducer<Text, IntWritable,Text,IntWritable> {
-    @Override
-    /* Word1 , {1,1,1,1,}
+      
+    /* input to the reducer
+     * Word1 , {1,1,1,1,}
      * Word2 , {1,1,1,..........}
      * Word3 , {1,1,1,1,1........}
      * Word4 , {1,1,1,1,1,1,1.....}
@@ -18,9 +19,9 @@ public class WordCountReducer extends Reducer<Text, IntWritable,Text,IntWritable
      */
     	public void reduce(Text key, Iterable<IntWritable> values, Context context) {
         try {
-        	System.out.println("input to reducer key is " + "\t" + key);
+        	System.out.println("input to reducer key is " + "\t" + key); //Word1
         	 int count = 0;
-             for (IntWritable value:values)
+             for (IntWritable value:values) //{1,1,1,1,}
              {
             	 System.out.println("input to reducer value is>>> " + "\t" + value);
             	 count += value.get();

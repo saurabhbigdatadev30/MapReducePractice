@@ -18,3 +18,24 @@ public class WordCountMapper extends Mapper<LongWritable,Text,Text,IntWritable> 
     }
 }
 }
+/* Output of Mapper                
+ * 
+ * (Word1,1)
+   (Word2,1)
+ * (Word3,1)
+ * (Word1,1)
+ * (Word4,1)
+ * (Word1,1)
+ * (Word1,1)
+ * (Word2,1)
+ * (Word4,1)
+ * (Word4,1)
+ * 
+ * 
+ * /* Output of merge/sort()
+     * Word1 , {1,1,1,1,}
+     * Word2 , {1,1,1,..........}
+     * Word3 , {1,1,1,1,1........}
+     * Word4 , {1,1,1,1,1,1,1.....}
+ * 
+ */
