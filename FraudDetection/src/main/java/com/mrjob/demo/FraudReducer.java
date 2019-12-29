@@ -155,9 +155,10 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 		}
 	    }
 	}
-	// Once for a CustomerId we get ordersCount ,returnsCount, fraudPoints on all his transactions, (groupby) we then calculate the return rate for that customer . 
+	// Once for a CustomerId we get ordersCount ,returnsCount, fraudPoints on all his transactions, (groupby)
+	//we then calculate the return rate for that customer . 
 	
-	/* 10 fraud points to the customer whose return rate is more than 50% */
+	/* Add 10 fraud points to the customer whose return rate is more than 50% */
 	double returnRate = (returnsCount/(ordersCount*1.0))*100;
 	if (returnRate >= 50)
 	    fraudPoints += 10;
@@ -167,11 +168,11 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
     }
      /* Customer list contains < CustomerID , CustomerName , FraudCount >
       [
-      {BHEE999914ED,Ana,12} 
-    {CCWO777171WT,Arthur,12}
-     {GGYZ333519YS,Allison,12}  
-     {BPLA457837LB,Alex,0}.......
-    
+       {BHEE999914ED,Ana,12} 
+       {CCWO777171WT,Arthur,12}
+       {GGYZ333519YS,Allison,12}  
+       {BPLA457837LB,Alex,0}.......
+    // we will sort the customers list<String> in cleanup method.
     ]
 */
     @Override
