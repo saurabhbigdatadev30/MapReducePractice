@@ -23,6 +23,7 @@ public class EmpDeptReducer extends Reducer<Text, Text, Text, Text> {
     i.e from logs we come to kown that
     input to reducerKEY-10+||department,INVENTORY HYDERABAD
 	input to reducerKEY-10+||Employee,1781 John Developer 6500 1681
+	
 	input to reducerKEY-10+||Employee,1681 Mira Mgr 5098 1481
 	input to reducerKEY-10+||Employee,1481 flink Mgr 9580 1681
 	input to reducerKEY-10+||Employee,1281 Shawn Architect 7890 1481
