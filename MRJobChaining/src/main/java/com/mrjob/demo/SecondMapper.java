@@ -19,3 +19,16 @@ public class SecondMapper extends Mapper<Text, IntWritable, Text, IntWritable>
 	c.write(new Text(lowerCaseWord), value);
     }
 }
+/*Output of Mapper 2 ------------->
+ *
+* john,1
+  lupa,1
+  john,1
+  frank,1
+  frank,1
+  john,1
+  lupa,1
+  .....
+  ..........
+  
+*/

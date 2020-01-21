@@ -12,7 +12,7 @@ public class FirstMapper extends Mapper<LongWritable, Text, Text, IntWritable>
 
     @Override
 /*
- * * Input file to mapper (input file)
+ * * Input file to mapper (input file) -- in capital 
 	 *  john,lupa,john,frank,frank,john,kuoa,john,frank,frank,john,frank,frank,lupa,steve
 		john,frank,john,kuoa,steve,steve
         lupa,john,steve,kuoa,lexa
@@ -30,3 +30,15 @@ public class FirstMapper extends Mapper<LongWritable, Text, Text, IntWritable>
 	}
     }
 }
+
+/*Output of Mapper 1 ------------->
+* JOHN,1
+  LUPA,1
+  JOHN,1
+  FRANK,1
+  FRANK,1
+  JOHN,1
+  .....
+  ..........
+  
+*/

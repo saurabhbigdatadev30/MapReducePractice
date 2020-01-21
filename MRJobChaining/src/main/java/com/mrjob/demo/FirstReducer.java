@@ -5,6 +5,13 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 
+/*
+     Input to reducer
+     (john,[1,1,1,1....])
+	 (lupa,[1,1,1,1,1,1....])
+	 (frank,[1,1,1,1....])
+ */
+
 public class FirstReducer extends Reducer<Text, IntWritable, Text, IntWritable>
 {
 
@@ -24,15 +31,15 @@ public class FirstReducer extends Reducer<Text, IntWritable, Text, IntWritable>
 	 *    
 	 * Output of Shuffle sort / Input file to reducer  --------->    key - lowercase words , value = array =>
 	 * (john , [1,1,1,1....])
-	 * (lupa , [1,1,1,1....])
-	 *  (frank, [1,1,1,1....])
+	 * (lupa , [1,1,1,1,1,1....])
+	 * (frank, [1,1,1,1....])
 	 */
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context c)throws IOException, java.lang.InterruptedException
     {
     /* 
-     * reduce n =1  (lowercaseword1 = john , [1,1,1,1....])
-     * reduce n= 2  (lupa , [1,1,1,1....])
+     * reduce n = 1  (john , [1,1,1,1....])
+     * reduce n = 2  (lupa , [1,1,1,1,1,1,1....])
      */
 	int totalWordFrequency = 0;
 	for (IntWritable count : values)
