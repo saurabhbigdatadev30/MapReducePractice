@@ -8,6 +8,14 @@ public class TemperatureReducer extends Reducer<Text, DoubleWritable, Text, Doub
 	
 	 
  @Override
+ /*
+  * 
+  *(stationID1,[(max temperature day1),(max temperature day2 )(max temperature day3) .... (max temperature 365) ]
+   (stationID2,[(max temperature day1),(max temperature day2 )(max temperature day3) .... (max temperature 365) ]
+   
+   locationstationID = stationID
+   Iterable<DoubleWritable> temperatureValues = [(max temperature day1),(max temperature day2 )(max temperature day3) .... (max temperature 365)
+  */
 protected void reduce(Text locationstationID, Iterable<DoubleWritable> temperatureValues, Context context)	throws IOException, java.lang.InterruptedException
 {
 Double maxVal=Double.MIN_VALUE;	 

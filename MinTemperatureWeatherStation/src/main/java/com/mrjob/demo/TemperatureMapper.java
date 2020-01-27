@@ -15,12 +15,14 @@ Step 1:- Extract  location, date, type, data, from the input data
 So we have data in format of 
 ------------------------------
 Lets say For year..1900
-For a  station, min & max temperatures for all  days across an year 
+For a  particular station, min & max temperatures for all  days across an year 
 
 stationID1 day1 min  -valX   >>> on Jan 1
 stationID1 day1 max  valX
 stationID1 day2 min -valy
-stationID1 day2 max valy
+stationID1 day2 max  valy
+stationID1 day3 min -valy
+stationID1 day3 max  valy
 ...............................
 ................................
 stationID1 day365  max -val
@@ -28,7 +30,7 @@ stationID1 day365  max val   >>>on Dec 31
 ...
 ...
 ...
-...
+...For N no of station
 stationID[n] day1 min  -valX
 stationID[n] day1 max   valX
 stationID[n] day2 min  -valy
