@@ -19,8 +19,8 @@ public class MapreducerChaining {
 		 Path inputPath = new Path(args[0]);
 		 Path outputDir = new Path(args[1]);
 
-		Configuration conf = new Configuration();
-		Job job = new Job(conf, "Chain Job1");
+		 Configuration conf = new Configuration();
+		 Job job = new Job(conf, "Chain Job1");
 		 System.out.println("************ INSIDE MAIN METHOD OF MapreducerChaining## **********************");
 	     System.out.println("Input args is" + "---"+ inputPath );
 	     System.out.println("Output args is" + "---"+ outputDir );

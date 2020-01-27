@@ -8,6 +8,18 @@ public class SecondMapper extends Mapper<Text, IntWritable, Text, IntWritable>
 {
 
     @Override
+    
+    /*Input to Mapper2  ------------->
+    * JOHN,1
+      LUPA,1
+      JOHN,1
+      FRANK,1
+      FRANK,1
+      JOHN,1
+      .....
+      ..........
+      
+    */
     protected void map(Text key, IntWritable value, Context c)	throws IOException, java.lang.InterruptedException
     {
 

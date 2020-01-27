@@ -17,10 +17,8 @@ public class MapperNextJob extends Mapper<LongWritable, Text, Text, IntWritable>
 	smith	1
 	steve	5
 
-This will be written in temporary file , from which job2 Mapper needs to be  read ... 	
-	
-When Job 2 mapper will read,it will read from the file, where the temporary output of job1 is written
-Since the mapper of Job 2 reads the the output of previous job so key = byte offset & value = line i.e => frank	7
+Job2 mapper reads from file where the temporary output of job1 is written.
+Since the mapper of Job 2 reads the the output of previous job from file so key = byte offset value & the value is line i.e => frank	7
 
 
 key =0  Value  =frank	7
@@ -59,26 +57,29 @@ Value  =smith	1
 mappper 7 - 
 key =44
 Value =steve	5
-	
-	
-	
-*/	
+	*/	
 	
     @Override
     protected void map(LongWritable key, Text value, Context c)throws IOException, java.lang.InterruptedException
     {
     	// 0 | frank	7  m1()
     	// 8 | john	    8  m2()
-    	// 15| kuoa	    4  m3 ()
+    	// 15| kuoa	    4  m3()
      System.out.println("key for Job2" +"-" + key);
-     System.out.println("Value for job 2"+ " "+  value);
+     System.out.println("Value for job 2"+ " "+ value);
 	String[] words = value.toString().split("\\s+"); // splitting on basis of space i.e input=> frank	7
 	// for map1() - words[0]= frank & words[1]= 7
-	String firstCharacter = words[0].substring(0, 1); //f
+	String firstCharacter = words[0].substring(0, 1); // we get the first letter of the word i.e .. .... f
 	c.write(new Text(firstCharacter), new IntWritable(Integer.parseInt(words[1])));
-	           //    f  7
-	           //    j  8
-	           //    k  4
-	
+	             
+	 /*
+				 f  7
+	             j  8
+	             k  4
+				 f  2
+				 a  3
+				 j  6	
+				 k  3 
+				 */
     }
 }
