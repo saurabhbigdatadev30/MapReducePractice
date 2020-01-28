@@ -1,4 +1,5 @@
 //G:\BIG-DATA\ClouderaExport\Hadoop\ExportedEclipseJAR
+//input sudo -u hdfs  hadoop jar MapreducerChaining.jar /user/cloudera/  /output_chainmapper
 package com.mrjob.demo;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
@@ -31,7 +32,7 @@ public class MapreducerChaining {
 		ChainMapper.addMapper(job,
 				      FirstMapper.class, /* Mapper to add to chain */
 				      LongWritable.class, /* Mapper input Key */
-				      Text.class, /* Mapper input value */
+				      Text.class, /* Mapper output value */
 				      Text.class, /* Mapper output key*/
 				      IntWritable.class, /* Mapper output value */
 				      conf /* job configuration to use */
@@ -69,6 +70,7 @@ public class MapreducerChaining {
 		}
 
 		// output of MR job 1 - outputDir + "_job1/part-r-00000"  --- is input to Job2 
+		//******* Job1 writting path ******hdfs://quickstart.cloudera:8020/output_ChainMapper_job1
 		
 		
 		/* *******************  Job 2 ****************************  */
@@ -92,3 +94,5 @@ public class MapreducerChaining {
 		job2.waitForCompletion(true);
 	    }
 }
+
+//******* Job2 input path ******hdfs://quickstart.cloudera:8020/output_ChainMapper_job1
