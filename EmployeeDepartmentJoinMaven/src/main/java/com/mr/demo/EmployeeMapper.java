@@ -7,6 +7,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class EmployeeMapper extends Mapper<LongWritable, Text, Text, Text>
 {		
 	/* Employee file contains 
+	 * [ EmpID|EmpName|Position|SALARY|ManagerID|DeptID ]
+	 * 
 	 1281,Shawn,Architect,7890,1481,10
      1381,Jacob,Admin,4560,1481,20
      1481,flink,Mgr,9580,1681,10
@@ -17,7 +19,6 @@ public class EmployeeMapper extends Mapper<LongWritable, Text, Text, Text>
 	
 	public void map(LongWritable key, Text value, Context con) throws IOException,InterruptedException 
 	{
-		
 		String line = value.toString().trim();        // convert incoming record to string
 		String[] EmployeeData = line.split(",");   // [{ 1281} {Shawn} {Architect} {7890} {1481} {10} ]
 		System.out.println("Employee Mapper" + "\t" + EmployeeData[0] + ""+ EmployeeData[1] + ""+ EmployeeData[2] + ""+ EmployeeData[3]+  "" + EmployeeData[4]);

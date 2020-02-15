@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class DepartmentMapper extends Mapper<LongWritable, Text, Text, Text>
 {
 	//  10,Inventory,HYDERABAD 
-	/*
+	/* DEPT_ID|DeptName|Dept_Location
 	10,INVENTORY,HYDERABAD
 	20,ACCOUNTS,PUNE
 	30,DEVELOPMENT,CHENNAI

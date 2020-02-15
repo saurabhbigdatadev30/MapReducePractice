@@ -10,7 +10,7 @@ public class TemperatureMapper extends Mapper<LongWritable, Text, Text, DoubleWr
 	/*
 	 * Link = https://lstsal.wordpress.com/2015/08/23/mapreduce-programme-find-highest-temperature-for-each-year-in-ncdc-data-set/
 ## Objective is to calculate max temp of weather station for that year
-Step 1:- Extract  location, date, type, data, from the input data
+Step 1:- Extract  location, date, type, data, from the input data 1900
 
 So we have data in format of 
 ------------------------------
