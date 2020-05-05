@@ -21,13 +21,16 @@ public class WordCountReducer extends Reducer<Text, IntWritable,Text,IntWritable
         try {
         	System.out.println("input to reducer key is " + "\t" + key); //Word1
         	 int count = 0;
-             for (IntWritable value:values) //{1,1,1,1,}
+             for (IntWritable value : values) //values [] = {1,1,1,1,}
              {
-            	 System.out.println("input to reducer value is>>> " + "\t" + value);
+            	// System.out.println("input to reducer value is>>> " + "\t" + value);
             	 count = count + value.get();
              }
-			context.write(key, new IntWritable(count));
-		} catch (IOException e) {
+             System.out.println("reducer output " + "\t" + key + "\t" + "=" +count); //Word1
+			 context.write(key, new IntWritable(count));
+		} 
+        
+        catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
