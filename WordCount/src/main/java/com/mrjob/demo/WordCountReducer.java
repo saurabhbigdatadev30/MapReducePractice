@@ -24,7 +24,7 @@ public class WordCountReducer extends Reducer<Text, IntWritable,Text,IntWritable
              for (IntWritable value:values) //{1,1,1,1,}
              {
             	 System.out.println("input to reducer value is>>> " + "\t" + value);
-            	 count += value.get();
+            	 count = count + value.get();
              }
 			context.write(key, new IntWritable(count));
 		} catch (IOException e) {
