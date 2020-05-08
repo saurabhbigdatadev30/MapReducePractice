@@ -14,9 +14,9 @@ public class WordCountDriver
     {
 		try {
 			Path inputPath = new Path(args[0]);
-			Path outputDir = new Path(args[1]);
+			Path outputPath = new Path(args[1]);
 			 System.out.println("************ INSIDE MAIN METHOD OF WordCountDriver **********************");
-			 System.out.println("input path" +"\t"+ inputPath +"\t" + "output path" +"\t"+ outputDir);
+			 System.out.println("input path" +"\t"+ inputPath +"\t" + "output path" +"\t"+ outputPath);
 			  if(args.length !=2){
 		          System.err.println("Invalid Command");
 		          System.err.println("Usage: WordCount <input path> <output path>");
@@ -36,9 +36,9 @@ public class WordCountDriver
 			job.setOutputKeyClass(Text.class);
 		    job.setOutputValueClass(IntWritable.class);
 			 FileInputFormat.addInputPath(job, inputPath);
-		     FileOutputFormat.setOutputPath(job, new Path(args[1]));
+		     FileOutputFormat.setOutputPath(job, outputPath);
 		     FileSystem fs = FileSystem.get(conf);
-		     fs.delete(outputDir);
+		     fs.delete(outputPath);
 			 job.waitForCompletion(true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
