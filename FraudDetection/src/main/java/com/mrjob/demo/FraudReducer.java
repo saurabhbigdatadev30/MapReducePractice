@@ -147,25 +147,31 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 		}
 	    }
 	}
-  // iteration over all the transactions for a user is complete and the vars returnsCount , ordersCount ,FP for transaction is set
+ // iteration on all the transactions  for a userID is complete and the vars returnsCount , ordersCount ,FP for transaction is set
 // Check if  return rate is more than 50% &  add 10 fraud points to the customer whose
 	double returnRate = (returnsCount/(ordersCount*1.0))*100;
 	    if (returnRate >= 50)
 	    fraudPoints += 10;
 	System.out.println("Customer ID" + "\t" +""+ key.toString() + "Customer Name" + "\t" + data.getCustomerName() + "Fraud Point is" + "\t" + fraudPoints);
 	
-	//Customer list contains (CustomerID , CustomerName , FraudCount) 
+	//Customer list contains (CustomerID , CustomerName , FraudCount) for every customer on every reducer invocation
 	customers.add(key.toString() + "," + data.getCustomerName() + "," + fraudPoints);
     }
-     /* Customer list contains < CustomerID , CustomerName , FraudCount >
-      [
-       {BHEE999914ED,Ana,12} 
-       {CCWO777171WT,Arthur,12}
-       {GGYZ333519YS,Allison,12}  
-       {BPLA457837LB,Alex,0}.......
+     /* customers contains the reducer output for every key processed . At the end this list will contain sorted output of 
+        reducer on basis of keys for all the rows
+  
+		(customerID1,[FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,..])=> add reducer result in custlst
+		(customerID2,[FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,..])=> add reducer result in custlst
+		(customerID3,[FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,..])=> add reducer result in custlst
+  
     // we will sort the customers list<String> in cleanup method.
     ]
 */
+    
+    
+   // The reducer when complete will have customer list that will contain sorted data on basis of customerIDs
+    
+    
     @Override
     protected void cleanup(Context c)throws IOException, java.lang.InterruptedException
     {
