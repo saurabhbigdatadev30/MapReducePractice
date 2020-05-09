@@ -10,7 +10,13 @@ import java.util.concurrent.TimeUnit;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 
-/*
+/*-------------------------------------------------------------------------------------------------------------------
+ * input to reducer 
+ * (customerID1, [FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,.....] )
+ * (customerID2, [FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,.....] )
+ * (customerID3, [FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,.....] )
+ * ------------------------------------------------------------------------------------------------------------------
+ * 
  * for  Reducer input Key :-BGHY284294HR, 
 Iterable<FraudWritable> values - contains array of FraudWritable object as below .
 Reducer input value is 	FraudWritable [customerName=Josephine, receiveDate=09-01-2017, returned=true, returnDate=17-01-2017]
@@ -103,19 +109,9 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 {
     ArrayList<String> customers = new ArrayList<String>();
     
-    
-    
+    //(customerID1, [FraudWritableobj1, FraudWritableobj2, FraudWritableobj3, FraudWritableobj4,.....] )
     @Override
     protected void reduce(Text key, Iterable<FraudWritable> values, Context c)	throws IOException, java.lang.InterruptedException
-    
-    /* Text key - customerID , value - contains all the transactions of one customer 
-    // Text key = GGYZ333519YS   
-     * Iterable<FraudWritable> values  = {Allison 26-01-2017,yes,16-02-2017} 
-     * 									 {Allison 13-01-2017,yes,15-01-2017}  
-     * 									 {Allison 07-01-2017,no,null} 
-     
-    */
-    
     {
 	int fraudPoints = 0;
 	int returnsCount = 0;
@@ -124,19 +120,15 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 	FraudWritable data = null;        
 	System.out.println("Reducer input Key " + ":-" +"" +""  +key );
 	Iterator<FraudWritable> valuesIter = values.iterator();
+	
 	while (valuesIter.hasNext())
 	{
-	    // incrementing orderplaced
-		ordersCount++;   
-	    // assigning line1 to FraudWritable object
-		
-	    data = valuesIter.next();  ////String customerName, String receiveDate, String returned, String returnDate  
+	    data = valuesIter.next();  //customerName=Josephine, receiveDate=09-01-2017, returned=true, returnDate=17-01-2017 
+	    ordersCount++;  // increment order count
 	    System.out.println("Reducer input value is "+ "\t" + ""+ data.toString());
-	    //customerName=Josephine, receiveDate=09-01-2017, returned=true, returnDate=17-01-2017
 	    if (data.getReturned())
 	    {
-	    	 // incrementing return count
-		returnsCount++;                            
+		returnsCount++;    // increment return count                        
 		try
 		{
 		    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -145,7 +137,7 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 		    long diffInMillies = Math.abs(returnDate.getTime() - receiveDate.getTime());
 		    long diffDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);     
 		    
-		    /* 1 fraud point to a customer whose (refund_date - receiving_date) > 10 days */
+		    /* assign 1 fraud point to a customer whose (refund_date - receiving_date) > 10 days */
 		    if (diffDays > 10)
 			fraudPoints++;            // fraudPoints  12
 		}
@@ -155,15 +147,14 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
 		}
 	    }
 	}
-	// Once for a CustomerId we get ordersCount ,returnsCount, fraudPoints on all his transactions, (groupby)
-	//we then calculate the return rate for that customer . 
-	
-	/* Add 10 fraud points to the customer whose return rate is more than 50% */
+  // iteration over all the transactions for a user is complete and the vars returnsCount , ordersCount ,FP for transaction is set
+// Check if  return rate is more than 50% &  add 10 fraud points to the customer whose
 	double returnRate = (returnsCount/(ordersCount*1.0))*100;
-	if (returnRate >= 50)
+	    if (returnRate >= 50)
 	    fraudPoints += 10;
 	System.out.println("Customer ID" + "\t" +""+ key.toString() + "Customer Name" + "\t" + data.getCustomerName() + "Fraud Point is" + "\t" + fraudPoints);
 	
+	//Customer list contains (CustomerID , CustomerName , FraudCount) 
 	customers.add(key.toString() + "," + data.getCustomerName() + "," + fraudPoints);
     }
      /* Customer list contains < CustomerID , CustomerName , FraudCount >
@@ -179,7 +170,7 @@ public class FraudReducer extends Reducer<Text, FraudWritable, Text, IntWritable
     protected void cleanup(Context c)throws IOException, java.lang.InterruptedException
     {
 	/* sort customers based on fraudpoints */
-	Collections.sort(customers, new Comparator<String>()
+	 Collections.sort(customers, new Comparator<String>()
 			{
 		//Sort on decending order of Fraud count
 		//customer1 = {BHEE999914ED,Ana,12}

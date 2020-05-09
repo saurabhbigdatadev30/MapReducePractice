@@ -25,15 +25,15 @@ public class FraudMapper extends Mapper<LongWritable, Text, Text, FraudWritable>
 	// set String customerName, String receiveDate, String returned, String returnDate
 	System.out.println("Mapper output is "+ "\t" + "" +"["+words[0]+ "\t" + "]" + ""+ "["+ data.toString()+ "]");
 	c.write(custId, data);
-//  returns key - customerID , value as FraudWritable object .. 
-//	[BPLA457837LB][FraudWritable [customerName=Alex, receiveDate=09-01-2017, returned=false, returnDate=null]]
-	
-	
 }
 }
+//output of map (customerID,FraudWritable) 
+//[BPLA457837LB][FraudWritable [customerName=Alex, receiveDate=09-01-2017, returned=false, returnDate=null]]
+
 
 /*
- * Mapper output is 	[BPLA457837LB	][FraudWritable [customerName=Alex, receiveDate=09-01-2017, returned=false, returnDate=null]]
+ * Mapper output is 	
+ [BPLA457837LB	][FraudWritable [customerName=Alex, receiveDate=09-01-2017, returned=false, returnDate=null]]
 Mapper output is 	[BPLA457837LB	][FraudWritable [customerName=Alex, receiveDate=13-01-2017, returned=false, returnDate=null]]
 Mapper output is 	[BPLA457837LB	][FraudWritable [customerName=Alex, receiveDate=06-01-2017, returned=false, returnDate=null]]
 Mapper output is 	[GGYZ333519YS	][FraudWritable [customerName=Allison, receiveDate=06-01-2017, returned=false, returnDate=null]]
